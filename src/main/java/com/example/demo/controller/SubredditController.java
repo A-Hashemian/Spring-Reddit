@@ -11,3 +11,18 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 
+@RestController
+@RequestMapping("/api/subreddit")
+@AllArgsConstructor
+@Slf4j
+public class SubredditController {
+
+    private final SubredditService subredditService;
+
+    @PostMapping
+    public ResponseEntity<SubredditDto> createSubreddit(@RequestBody SubredditDto subredditDto) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(subredditService.save(subredditDto));
+    }
+
+}
